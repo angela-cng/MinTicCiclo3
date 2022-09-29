@@ -27,7 +27,7 @@ public class BoatService {
             return boatRepository.save(b);
         }else{
             Optional<Boat> e=boatRepository.getBoat(b.getId());
-            if(e.isEmpty()){
+            if(!e.isPresent()){
                 return boatRepository.save(b);
             }else{
                 return b;

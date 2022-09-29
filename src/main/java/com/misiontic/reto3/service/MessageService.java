@@ -27,7 +27,7 @@ public class MessageService {
             return messageRepository.save(b);
         }else{
             Optional<Message> e= messageRepository.getMessage(b.getIdMessage());
-            if(e.isEmpty()){
+            if(!e.isPresent()){
                 return messageRepository.save(b);
             }else{
                 return b;
@@ -38,7 +38,7 @@ public class MessageService {
     public Message update(Message b){
         if(b.getIdMessage()!=null){
             Optional<Message> q= messageRepository.getMessage(b.getIdMessage());
-            if(!q.isEmpty()){
+            if(q.isPresent()){
                 if (b.getMessageText()!=null){
                     q.get().setMessageText(b.getMessageText());
                 }

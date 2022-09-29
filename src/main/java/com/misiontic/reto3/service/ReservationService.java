@@ -28,7 +28,7 @@ public class ReservationService {
             return reservationRepository.save(b);
         }else{
             Optional<Reservation> e= reservationRepository.getReservation(b.getIdReservation());
-            if(e.isEmpty()){
+            if(!e.isPresent()){
                 b.setStatus("created");
                 return reservationRepository.save(b);
             }else{
@@ -40,7 +40,7 @@ public class ReservationService {
     public Reservation update(Reservation b){
         if(b.getIdReservation()!=null){
             Optional<Reservation> q= reservationRepository.getReservation(b.getIdReservation());
-            if(!q.isEmpty()){
+            if(q.isPresent()){
                 if (b.getStartDate()!=null){
                     q.get().setStartDate(b.getStartDate());
                 }
